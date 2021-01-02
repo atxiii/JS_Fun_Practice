@@ -92,7 +92,7 @@
  */
 
 
- //Write a function mulRecurse that is the generalized mul function but uses recursion
+ // Write a function mulRecurse that is the generalized mul function but uses recursion
     const mulRecurse = (...nums) => {
         if(nums.length <=0) return 1;
         nums = nums[0] * mulRecurse(...nums.slice(1)); 
@@ -113,10 +113,26 @@
        
     }
 
+
+//Write a function not that takes a function and returns the negation of its result
+    const not =(...nums)=>{
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 //    console.log(maxRecurse(1,41,23,13));    
 
 // Export
-    module.export = {
+    module.exports = {
         add,
         addb,
         addRecurse,
