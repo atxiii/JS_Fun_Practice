@@ -1,3 +1,5 @@
+const { arrayg } = require("./dimitrisz123");
+
 // Write a function identity that takes an argument and returns that argument
     const identity = x => x;
 
@@ -81,15 +83,15 @@
  * 
  * 
  * 
- * . . . . . . . . . . . . .                     . . . . . . . . . . . .
- * . . . . . . . . . . . . . Happy New Year 2021 . . . . . . . . . . . . 
- * . . . . . . . . . . . . .                     . . . . . . . . . . . .
+ .  . . . . . . . . . . . . .                     . . . . . . . . . . . .
+ .  . . . . . . . . . . . . . Happy New Year 2021 . . . . . . . . . . . . 
+ .  . . . . . . . . . . . . .                     . . . . . . . . . . . .
  * 
  * 
  * 
  * 
  * 
- */
+ *****/
 
 
  // Write a function mulRecurse that is the generalized mul function but uses recursion
@@ -114,25 +116,40 @@
     }
 
 
-//Write a function not that takes a function and returns the negation of its result
-    const not =(...nums)=>{
-
+// Write a function not that takes a function and returns the negation of its result
+    const not =(func)=>{
+        function innerfunc(...nums){
+            return !func(...nums);
+        }
+       return innerfunc;
     }
 
 
+// Write a function acc that takes a function and an initial value and returns a function 
+// that runs the initial function on each argument, accumulating the result
+    const acc = (func , x) => {
+        return function innerfunc(...nums){
+           return nums.reduce((acc, cur)=>{
+                return func(acc,cur);
+            },x);
+        }
+    }
 
+//Write a function accPartial that takes in a function, a start index, and an end index, and returns 
+// a function that accumulates a subset of its arguments by applying the given function to all elements between start and end.
+    const accPartial = (f, s, e)=>{
+        const subfunction =(...nums)=> {
+            nums.splice(s, e-s, nums.slice(s,e).reduce((acc,cur)=> f(acc,cur)));
+            return nums;
+        }
+        return subfunction;
+    }
 
-
-
-
-
-
-
-
-//    console.log(maxRecurse(1,41,23,13));    
 
 // Export
     module.exports = {
+        acc,
+        accPartial,
         add,
         addb,
         addRecurse,
@@ -146,6 +163,7 @@
         mul,
         mulb,
         mulRecurse,
+        not,
         sub,
         subb
     } ;   
